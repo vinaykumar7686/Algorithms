@@ -6,6 +6,7 @@ class Linear_Searching:
 
     def accept(self):
         n= int (input("Enter the size of array: "))
+        print('Enter the Array Elements')
         while n!=0:
             n-=1
             self.arr.append(int(input()))

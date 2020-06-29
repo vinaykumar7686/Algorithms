@@ -61,6 +61,57 @@ class LinkedList:
             new_node = Node(item)
             new_node.next = prev_node.next
             prev_node.next=new_node
+
+    def delete_key(self, key):
+        '''
+        To delete all the occurance of value sent as key to the function.
+        '''
+        temp=self.head
+        
+        if temp==None and key==None:
+            return
+        elif temp is not None and key is temp.data:
+            self.head=temp.next
+        else:
+            prev=temp
+            while temp:
+                if temp.data==key:
+                    break
+                prev= temp
+                temp=temp.next
+             
+            if temp is None:
+                print('Key not found')
+                return
+
+            prev.next= temp.next
+
+    def delete_pos(self, pos):
+        '''
+        To delete the node at given position in linked list
+        '''
+        temp=self.head
+        if temp in None or pos is None:
+            return
+        
+        elif pos is 0:
+            self.head= temp.next
+            None
+
+        else: 
+            while pos is not -1 and temp.next is not None:
+                pos-=1
+                temp=temp.next
+
+            if temp is None:
+                return
+
+            if temp.next is none:
+                return
+            
+            temp=temp.next
+
+        
     
 if __name__ == "__main__":
     
@@ -72,8 +123,11 @@ if __name__ == "__main__":
     ll.append('c')
 
     ll.insertAfter(ll.head.next, 'ab')
+
+    ll.delete_key('ab')
     # In above line ll.head signifies First Node, ll.head.next points to Second Node and so on
     ll.print_llist()
+
 
 
 

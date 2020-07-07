@@ -124,7 +124,50 @@ class LinkedList:
   
         temp.next = next 
 
-        
+    def list_size_i(self):
+        '''
+        Iterative approach of finding size of a  linked list.
+        '''
+        if self.head == None:
+            return 0
+        else:
+            temp = self.head
+            size = 0
+            while temp:
+                temp = temp.next
+                size+=1
+            return size
+
+    def size_rec(self, temp):
+        '''
+        Size of linkedlist through iterative approach
+        '''
+        if temp:
+            return 1+self.size_rec(temp.next)
+        else:
+            return 0
+
+    def list_size_r(self):
+        '''
+        Driver for size_rec that finds size of linkedlist through iterative approach
+        '''
+        return(self.size_rec(temp = self.head))
+
+    def exists(self, val):
+        '''
+        Returns True if val exists in linked list else False
+        '''
+        if self.head==None:
+            return False
+        else:
+            temp = self.head
+            while temp:
+                if str(temp.data) == str(val):
+                    return True
+                temp = temp.next
+            return False
+
+
     
 if __name__ == "__main__":
     
@@ -141,6 +184,11 @@ if __name__ == "__main__":
     ll.delete_pos(1)
     # In above line ll.head signifies First Node, ll.head.next points to Second Node and so on
     ll.print_llist()
+
+    print(f'Size of list : {ll.list_size_r()}')
+
+    print(f'"x" exists in linked list : {ll.exists(val = "x")}')
+    print(f'"a" exists in linked list : {ll.exists(val = "a")}')
 
 
 

@@ -167,6 +167,98 @@ class LinkedList:
                 temp = temp.next
             return False
 
+    def search(self, val):
+        '''
+        Returns the index of element in linked list
+        '''  
+        if self.head == None:
+            return
+        else:
+            temp = self.head
+            count = 1
+            while temp:
+                if temp.data == val:
+                    return count
+                temp = temp.next
+                count+=1
+        return
+
+    def nth_node_i(self, n):
+        '''
+        Function to find nth number in list iteratively.
+        '''
+        if self.head == None or n<0:
+            return
+        else:
+            count = 1
+            temp = self.head
+            while temp:
+                if count == n:
+                    return temp.data
+                temp = temp.next
+                count+=1
+            return
+
+    def rec_nth_node(self, temp, x, n):
+        
+        if temp == None or x>n:
+            return
+        elif x==n:
+            return temp.data
+        else:
+            return self.rec_nth_node(temp.next, x+1, n)
+
+    def nth_node_r(self, n):
+        '''
+        Function to find nth number in list recursively
+        '''
+        if self.head==None:
+            return
+        return self.rec_nth_node(self.head, 1, n)
+
+    def nth_node_end(self, n):
+        '''
+        Function to find nth number in list from end iteratively.
+        '''
+        if self.head == None or n<0:
+            return
+        else:
+            # Storing size of list in variable size
+            size = ll.list_size_i()
+            # Calculating position from the front
+            n = size - n + 1
+            # Using pre-created function that finds nth number from front
+            return ll.nth_node_i(n)
+
+    def nth_node_end_x(self, n):
+        '''
+        Advanced approach to finding nth value from end using 2 pointers
+        '''
+        if self.head == None or n<1:
+            return
+        else:
+            main = self.head
+            ref = self.head
+            count = 0
+            while count<n:
+                if ref==None:
+                    return
+                
+                ref = ref.next
+                count+=1
+            
+            while ref:
+                ref = ref.next
+                main = main.next
+
+            return main.data
+
+    def mid_ele(self):
+        size = self.list_size_i()
+        if size%2==0:
+            return (self.nth_node_i(int(size/2)), self.nth_node_end(int(size/2)))
+        else:
+            return self.nth_node_i(int(size/2)+1)
 
     
 if __name__ == "__main__":
@@ -177,6 +269,7 @@ if __name__ == "__main__":
     ll.push('a')
 
     ll.append('c')
+    ll.append('z')
 
     ll.insertAfter(ll.head.next, 'ab')
 
@@ -189,6 +282,14 @@ if __name__ == "__main__":
 
     print(f'"x" exists in linked list : {ll.exists(val = "x")}')
     print(f'"a" exists in linked list : {ll.exists(val = "a")}')
+
+    print(f'Search for {"ab"} finished at: {ll.search("ab")}')
+
+    print(f'2nd element in list is : {ll.nth_node_r(2)}')
+
+    print(f'2nd element from ending in list is : {ll.nth_node_end_x(2)}')
+
+    print(f'Mid Element of array is/are : {ll.mid_ele()}')
 
 
 

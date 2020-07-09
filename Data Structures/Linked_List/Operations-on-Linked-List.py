@@ -320,7 +320,28 @@ class LinkedList:
                 if slow == fast:
                     return True
             return False
+    
+    def check_palin(self):
+        '''
+        Method to check wheter a linked list in palindrome or not
+        '''
+        if self.head == None:
+            return False
+        else:
+            stack = list()
+            temp = self.head
+            while temp:
+                stack.append(temp.data)
+                temp = temp.next
+            
+            temp = self.head
+            while temp:
+                if not temp.data == stack.pop():
+                    return False
+                temp = temp.next
+            return True
 
+        
     
 if __name__ == "__main__":
     
@@ -357,7 +378,7 @@ if __name__ == "__main__":
 
     print (f'Cycles in list : {ll.test_cycle_x()}')
 
-
+    print(f'Is linked list a palindrome: {ll.check_palin()}')
 
 
     

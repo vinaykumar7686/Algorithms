@@ -340,9 +340,51 @@ class LinkedList:
                     return False
                 temp = temp.next
             return True
-
-        
     
+    def remove_duplicates(self):
+        '''
+        Method to remove duplicacy in a list
+        '''
+        if self.head == None:
+            return
+        else:
+            temp = self.head
+            while temp:
+                # storing value of current node in a variable for comparison
+                val = temp.data
+                # initilising a pointer to traverse through remaining list in search of duplicates
+                trav = temp
+                while trav.next:
+                    #initialising a poiter to point to previous node, so as to enable us to remove a duplicate node
+                    prev = trav
+                    trav = trav.next
+                    if trav.data == val:
+                        prev.next = trav.next
+                temp = temp.next
+        
+    def remove_duplicates_x(self):
+        '''
+        Advanced approach to removing duplicates in a linked list using a set
+        '''
+        if self.head == None:
+            return
+        else:
+            temp = self.head
+            # initialising a set named tab to save the elements occured in the list so far
+            tab = set()
+            tab.add(temp.data)
+
+            while temp.next:
+                prev = temp
+                temp = temp.next
+                # if the data of node is present in the set the removing the node
+                if temp.data in tab:
+                    prev.next = temp.next
+                # else adding the value to the set
+                else:
+                    tab.add(temp.data)
+
+
 if __name__ == "__main__":
     
     ll=LinkedList()
@@ -380,6 +422,12 @@ if __name__ == "__main__":
 
     print(f'Is linked list a palindrome: {ll.check_palin()}')
 
+    print("Before removing duplicacy ")
+    ll.print_llist()
+
+    ll.remove_duplicates_x()
+    print("After removing duplicacy ")
+    ll.print_llist()
 
     
 

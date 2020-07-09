@@ -254,11 +254,72 @@ class LinkedList:
             return main.data
 
     def mid_ele(self):
+        '''
+        Returns middle element of the list
+        if list has even number of elements then it returns a tuple containing mid elements.
+        '''
         size = self.list_size_i()
         if size%2==0:
             return (self.nth_node_i(int(size/2)), self.nth_node_end(int(size/2)))
         else:
             return self.nth_node_i(int(size/2)+1)
+
+    def count_occ(self, val: str)-> int:
+        '''
+        Counts the occurance of a value in the list
+        '''
+        if self.head == None:
+            return 0
+        else:
+            count = 0
+            temp = self.head
+            while temp:
+                if temp.data == val:
+                    count +=1
+                temp = temp.next
+            return count
+			
+    def test_cycle(self)->bool:
+        '''
+        This method tests for presense of cycle in the linked list
+        '''
+        if self.head == None:
+            return False
+        else:
+            temp = self.head
+            nodes = set()
+            while temp:
+            
+                if temp in nodes:
+                    return True
+                nodes.add(temp)
+                temp = temp.next
+        
+            return False
+    
+    def test_cycle_x(self)->bool:
+        '''
+        Floyd’s Cycle-Finding Algorithm
+        Approach: This is the fastest method and has been described below:
+
+        Traverse linked list using two pointers.
+        Move one pointer(slow) by one and another pointer(fast) by two. 
+        If these pointers meet at the same node then there is a loop. 
+        If pointers do not meet then linked list doesn’t have a loop.
+        '''
+        if self.head==None:
+            return False
+        else:
+            slow = self.head
+            fast = self.head
+
+            while slow and fast and fast.next:
+                slow = slow.next
+                fast = fast.next.next
+
+                if slow == fast:
+                    return True
+            return False
 
     
 if __name__ == "__main__":
@@ -269,6 +330,7 @@ if __name__ == "__main__":
     ll.push('a')
 
     ll.append('c')
+    ll.append('z')
     ll.append('z')
 
     ll.insertAfter(ll.head.next, 'ab')
@@ -290,6 +352,10 @@ if __name__ == "__main__":
     print(f'2nd element from ending in list is : {ll.nth_node_end_x(2)}')
 
     print(f'Mid Element of array is/are : {ll.mid_ele()}')
+
+    print(f'"z" occours in list : {ll.count_occ("z")} times')
+
+    print (f'Cycles in list : {ll.test_cycle_x()}')
 
 
 

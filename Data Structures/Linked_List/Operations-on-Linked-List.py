@@ -366,7 +366,7 @@ class LinkedList:
         '''
         Advanced approach to removing duplicates in a linked list using a set
         '''
-        if self.head == None:
+        """if self.head == None:
             return
         else:
             temp = self.head
@@ -383,6 +383,67 @@ class LinkedList:
                 # else adding the value to the set
                 else:
                     tab.add(temp.data)
+
+    def swap_nodes(self, x, y):
+        if x==y or self.head == None:
+            return
+        else:
+            head_ref = self.head
+            headprev = None
+            
+            flagx = True
+            flagy = True
+
+            locx = None
+            prevx = None
+
+            locy = None
+            prevy = None
+
+            while head_ref.next:
+                # Conditions for finding x
+                if head_ref.data == x and flagx:
+                    prevx = headprev
+                    locx = head_ref
+                    flagx = False
+
+                elif head_ref.data == y and flagy:
+                    prevy = headprev
+                    locy = head_ref
+                    flagy = False
+                
+                if not flagx and not flagy:
+                    break
+
+                headprev = head_ref
+                head_ref = head_ref.next
+
+            '''print(f'X = {prevx.data}, {locx.data}')
+            print(f'X = {prevy.data}, {locy.data}')'''
+
+            temp = locy.next
+
+            prevx.next = locy
+            locy.next = locx.next
+
+            prevy.next = locx
+            locx.next = temp"""
+        pass
+                    
+                
+    def swap_pairs(self):
+        '''
+        Swaping pairs of nodes in whole linked list
+        '''
+        if self.head == None:
+            return
+        else:
+            temp = self.head
+            while temp is not None and temp.next is not None:
+                temp.data , temp.next.data = temp.next.data , temp.data
+
+                # Jumping over a node as we process two at a time    
+                temp = temp.next.next
 
 
 if __name__ == "__main__":
@@ -429,5 +490,10 @@ if __name__ == "__main__":
     print("After removing duplicacy ")
     ll.print_llist()
 
-    
+    ll.swap_pairs()
+    print('List after swapping pairs')
+    ll.print_llist()
 
+    print('After swapping a and c')
+    ll.swap_nodes('a','c')
+    ll.print_llist()

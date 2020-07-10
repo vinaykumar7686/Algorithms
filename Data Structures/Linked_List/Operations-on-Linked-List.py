@@ -24,6 +24,19 @@ class LinkedList:
             while temp:
                 print(temp.data)
                 temp=temp.next
+    
+    def printll(self, temp):
+        if temp:
+            self.printll(temp.next)
+            print(temp.data)
+        else:
+            return
+
+    def print_rev(self):
+        '''
+        Function to print reverse of linked list
+        '''
+        self.printll(self.head)
 
     def push(self, item):
         '''
@@ -366,7 +379,7 @@ class LinkedList:
         '''
         Advanced approach to removing duplicates in a linked list using a set
         '''
-        """if self.head == None:
+        if self.head == None:
             return
         else:
             temp = self.head
@@ -385,6 +398,7 @@ class LinkedList:
                     tab.add(temp.data)
 
     def swap_nodes(self, x, y):
+        """
         if x==y or self.head == None:
             return
         else:
@@ -429,8 +443,8 @@ class LinkedList:
             prevy.next = locx
             locx.next = temp"""
         pass
-                    
-                
+
+
     def swap_pairs(self):
         '''
         Swaping pairs of nodes in whole linked list
@@ -445,6 +459,28 @@ class LinkedList:
                 # Jumping over a node as we process two at a time    
                 temp = temp.next.next
 
+    def intersect(self,this, intersection):
+        '''if self.head == None or this.head == None:
+            return
+        else:
+            done = set()
+            l1 = self.head
+            l2 = this.head
+
+            while l1:
+                val = l1.data
+                if val in done:
+                    continue
+                
+                done.add(val)
+                while l2:
+                    if l2.data == val:
+                        intersection.push(l2.data)
+                        break
+                    l2 = l2.next
+                
+                l1= l1.next
+        return intersection'''
 
 if __name__ == "__main__":
     
@@ -463,6 +499,8 @@ if __name__ == "__main__":
     ll.delete_pos(1)
     # In above line ll.head signifies First Node, ll.head.next points to Second Node and so on
     ll.print_llist()
+    print('Reverse')
+    ll.print_rev()
 
     print(f'Size of list : {ll.list_size_r()}')
 
@@ -494,6 +532,11 @@ if __name__ == "__main__":
     print('List after swapping pairs')
     ll.print_llist()
 
-    print('After swapping a and c')
-    ll.swap_nodes('a','c')
-    ll.print_llist()
+    intersection = LinkedList()
+    l2 = LinkedList()
+    l2.push('1')
+    l2.push('2')
+    l2.push('a')
+    l2.push('c')
+    intersection = ll.intersect(l2,intersection)
+    intersection.print_llist()

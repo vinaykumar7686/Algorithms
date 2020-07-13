@@ -29,6 +29,19 @@ class CircularLinkedList:
 
 		self.head = ptr 
 
+	# Checking if a linked list is circular or not
+	def is_circular(self):
+		if self.head==None:
+			return True
+		else:
+			temp = self.head
+			while temp.next!=None:
+				if temp.next == self.head:
+					return True
+				temp = temp.next
+			return False
+
+
 	# Function to print nodes in a given circular linked list 
 	def printList(self): 
 		temp = self.head 
@@ -114,3 +127,5 @@ head2.printList()'''
 cllist.insert_sorted(0)
 print('\nList after insertion')
 cllist.printList()
+
+print(f"This list is circular : {cllist.is_circular()}")

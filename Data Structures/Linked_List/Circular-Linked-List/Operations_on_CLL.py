@@ -41,6 +41,32 @@ class CircularLinkedList:
 				temp = temp.next
 			return False
 
+	# Function to convert a simple linked list ot circular linked list
+	def set_circular(self):
+		if self.head==None:
+			return
+		else:
+			temp = self.head
+			while temp.next != None:
+				if temp.next == self.head:
+					print('Already a circular linked list')
+					return
+				temp = temp.next
+			temp.next = self.head
+
+	# Function to convert a circular linked list to circular
+	def set_linear(self):
+		if self.head == None:
+			return
+		else:
+			temp = self.head
+			while temp.next != self.head:
+				if temp.next == None:
+					print('Already a linear linked list')
+					return
+				temp = temp.next
+			temp.next = None
+
 	# Function to count the number of nodes in circular linked list
 	def count_nodes(self):
 		if self.head == None:
@@ -143,3 +169,6 @@ cllist.printList()
 print(f"This list is circular : {cllist.is_circular()}")
 
 print(f'Total number of nodes in list : {cllist.count_nodes()}')
+
+cllist.set_linear()
+cllist.set_circular()

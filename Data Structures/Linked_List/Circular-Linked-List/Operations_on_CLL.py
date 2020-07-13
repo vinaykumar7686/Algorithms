@@ -41,6 +41,18 @@ class CircularLinkedList:
 				temp = temp.next
 			return False
 
+	# Function to count the number of nodes in circular linked list
+	def count_nodes(self):
+		if self.head == None:
+			return 0
+		else:
+			count = 1
+			temp = self.head
+			while temp.next != self.head:
+				count+=1
+				temp = temp.next
+			return count
+
 
 	# Function to print nodes in a given circular linked list 
 	def printList(self): 
@@ -129,3 +141,5 @@ print('\nList after insertion')
 cllist.printList()
 
 print(f"This list is circular : {cllist.is_circular()}")
+
+print(f'Total number of nodes in list : {cllist.count_nodes()}')

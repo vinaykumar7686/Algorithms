@@ -60,6 +60,30 @@ class CircularLinkedList:
 			p2.next = p1.next
 
 			p1.next = self.head
+	
+	def insert_sorted(self, val):
+		ptr = Node(val)
+		# for empty list
+		if self.head == None:
+			self.head = ptr
+			ptr.next = self.head
+		else:
+			curr = self.head
+			# for case when the new no. is smallest
+			if curr.data>val:
+				while curr.next != self.head:
+					curr = curr.next
+				ptr.next = self.head
+				curr.next = ptr
+				self.head = ptr
+			# all cases excluding above
+			else:
+				while curr.next != self.head and curr.next.data<val:
+					curr = curr.next
+				ptr.next = curr.next
+				curr.next = ptr
+
+
 
 
 
@@ -69,20 +93,24 @@ class CircularLinkedList:
 cllist = CircularLinkedList() 
 
 # Created linked list will be 11->2->56->12 
-cllist.push(1)
-cllist.push(12) 
-cllist.push(56) 
+cllist.push(7)
+cllist.push(6) 
+cllist.push(5) 
 cllist.push(2) 
-cllist.push(11) 
+cllist.push(1) 
 
 print ("\nContents of circular Linked List")
 cllist.printList() 
 
-head1 = CircularLinkedList()
+'''head1 = CircularLinkedList()
 head2 = CircularLinkedList()
 cllist.div(head1,head2)
 
 print('\nContents of List 1')
 head1.printList()
 print('\nContents of List 2')
-head2.printList()
+head2.printList()'''
+
+cllist.insert_sorted(0)
+print('\nList after insertion')
+cllist.printList()

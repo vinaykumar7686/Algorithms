@@ -35,6 +35,20 @@ def maxSubArray(nums):
                 msf = meh
                 
         return msf
+    
+def approach2(nums):
+    '''
+    Time Complexity: O(n)
+    '''
+    for i in range(1, len(nums)):
+        nsum = nums[i]+nums[i-1]
+        if nsum>nums[i]:
+            nums[i] = nsum
+    
+    return  max(nums)
+
+
 
 if __name__ == "__main__":
     print(maxSubArray([-2,1,-3,4,-1,2,1,-5,4]))
+    print(approach2([-2,1,-3,4,-1,2,1,-5,4]))

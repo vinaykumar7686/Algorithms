@@ -134,7 +134,32 @@ class CircularLinkedList:
 				ptr.next = curr.next
 				curr.next = ptr
 
-
+	# Exchange first and last nodes of a circular linked list
+	def exchange(self):
+		# for case when there is an empty list or a list with single node
+		if self.head == None or self.head.next == self.head:
+			return 
+		# For case when there are only two nodes
+		elif self.head.next.next == self.head:
+			self.head = self.head.next
+		# for list with multiple nodes
+		else:
+			prev = None
+			curr = self.head
+			temp = self.head
+			# to find last and second last nodes of the list
+			while curr.next != self.head:
+				prev = curr
+				curr = curr.next
+			
+			# point the last node to second node of the list
+			curr.next = temp.next
+			# point the second last node to first node
+			prev.next = temp
+			# point the end of node to start ( make linked list circular )
+			temp.next = curr
+			# mark the starting of linked list
+			self.head = curr
 
 
 
@@ -148,7 +173,7 @@ cllist.push(7)
 cllist.push(6) 
 cllist.push(5) 
 cllist.push(2) 
-cllist.push(1) 
+cllist.push(1)
 
 print ("\nContents of circular Linked List")
 cllist.printList() 
@@ -172,3 +197,8 @@ print(f'Total number of nodes in list : {cllist.count_nodes()}')
 
 cllist.set_linear()
 cllist.set_circular()
+
+cllist.exchange()
+
+print("New List after exchanging first and last elements of list")
+cllist.printList()

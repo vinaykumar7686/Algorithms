@@ -134,6 +134,41 @@ class CircularLinkedList:
 				ptr.next = curr.next
 				curr.next = ptr
 
+
+	def delete_val(self, val):
+		'''
+		Method to delete a given value in a linked list
+		'''
+		# case: empty list
+		if self.head==None:
+			return
+		# case: list with single node
+		elif self.head.next == self.head:
+			if self.head.data == val:
+				self.head = None
+				return
+			else:
+				return
+		# case: first element is to be deleted
+		elif self.head.data == val:
+			temp = self.head
+			while temp.next!= self.head:
+				temp = temp.next
+			temp.next = self.head.next
+
+			self.head = self.head.next
+		else:
+			prev = self.head
+			while prev.next!=self.head:
+				if prev.next.data == val:
+					break
+				else:
+					prev = prev.next
+			
+			if prev.next.data == val:
+				prev.next = prev.next.next
+		
+
 	# Exchange first and last nodes of a circular linked list
 	def exchange(self):
 		# for case when there is an empty list or a list with single node
@@ -201,4 +236,8 @@ cllist.set_circular()
 cllist.exchange()
 
 print("New List after exchanging first and last elements of list")
+cllist.printList()
+
+print('List after deletion of value : 7')
+cllist.delete_val(7)
 cllist.printList()

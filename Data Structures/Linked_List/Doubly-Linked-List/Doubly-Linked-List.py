@@ -42,8 +42,67 @@ class DLL:
                 print(temp.data)
                 temp = temp.next
 
+    def print_rev(self):
+        if self.head == None:
+            print('List Empty')
+            return
+        else:
+            print("List in reverse order: ")
+            def rev(point):
+                if point:
+                    rev(point.next)
+                    print(point.data)
+                else:
+                    return
+
+            rev(self.head)
+
+    def insert_after(self,new_data, prev_node):
+        '''
+        Method to insert a node with data new_data after the node prev_node
+        new_data is value to be stored in node
+        prev_node is the node after which this new node is to be inserted
+        '''
+        ptr = Node(new_data)
+        if prev_node is None:
+            print('Invalid Node!')
+        else:
+            ptr.next = prev_node.next
+            prev_node.next = ptr
+            ptr.prev = prev_node
+            
+            if ptr.next is not None:
+                ptr.next.prev = ptr
+
+    def insert_before(self,new_data, nxt_node):
+        '''
+        Method to insert a node with data new_data before the node nxt_node
+        new_data is value to be stored in node
+        nxt_node is the node before which this new node is to be inserted
+        '''
+        
+        if nxt_node is None:
+            print('Invalid Node!')
+        else:
+            ptr = Node(new_data)
+            if nxt_node.prev  == None:
+                nxt_node.prev = ptr
+                self.head = ptr
+                ptr.next = nxt_node
+            else:
+                ptr.next = nxt_node
+                ptr.prev = nxt_node.prev
+                nxt_node.prev.next = ptr
+                nxt_node.prev = ptr
+
 dll = DLL()
 dll.print_list()
 dll.push_beg(1)
 dll.append(2)
+dll.print_list()
+
+dll.print_rev()
+
+dll.insert_before(0, dll.head.next)
+
 dll.print_list()

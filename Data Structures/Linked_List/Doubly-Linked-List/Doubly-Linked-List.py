@@ -95,6 +95,27 @@ class DLL:
                 nxt_node.prev.next = ptr
                 nxt_node.prev = ptr
 
+    def delete_node(self, np):
+        '''
+        delete np node from the list
+        '''
+        if np is None or self.head is None:
+            print('Unable to delete!')
+        else:
+            if np.next == None:
+                np.prev.next = None
+            elif np == self.head:
+                self.head = np.next
+                np.next.prev = None
+            else:
+                np.prev.next = np.next
+                np.next.prev = np.prev
+            
+            print('Node Deleted')
+            # Garbage collection
+            import gc
+            gc.collect()
+
 dll = DLL()
 dll.print_list()
 dll.push_beg(1)
@@ -105,4 +126,7 @@ dll.print_rev()
 
 dll.insert_before(0, dll.head.next)
 
+dll.print_list()
+
+dll.delete_node(dll.head.next)
 dll.print_list()

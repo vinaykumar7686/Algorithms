@@ -115,11 +115,35 @@ class DLL:
             # Garbage collection
             import gc
             gc.collect()
+    
+    def reverse_list(self):
+        '''
+        Method to reverse the linked list
+        '''
+        temp = None
+        current = self.head 
+          
+        # Swap next and prev for all nodes of  
+        # doubly linked list 
+        while current is not None: 
+            temp = current.prev  
+            current.prev = current.next
+            current.next = temp 
+            current = current.prev 
+  
+        # Before changing head, check for the cases like empty list and list with only one node 
+        if temp is not None: 
+            self.head = temp.next
+            
+
 
 dll = DLL()
 dll.print_list()
 dll.push_beg(1)
 dll.append(2)
+dll.append(3)
+dll.append(4)
+dll.append(5)
 dll.print_list()
 
 dll.print_rev()
@@ -129,4 +153,8 @@ dll.insert_before(0, dll.head.next)
 dll.print_list()
 
 dll.delete_node(dll.head.next)
+dll.print_list()
+
+print('Reversed List')
+dll.reverse_list()
 dll.print_list()

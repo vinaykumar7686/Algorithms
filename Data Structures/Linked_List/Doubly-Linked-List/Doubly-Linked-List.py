@@ -134,6 +134,24 @@ class DLL:
         # Before changing head, check for the cases like empty list and list with only one node 
         if temp is not None: 
             self.head = temp.next
+
+    def rem_dup(self):
+        '''
+        Removes duplicates from the list
+        Linked list must be sorted
+        '''
+        if self.head == None or self.head.next == None:
+            return
+        else:
+            temp = self.head.next
+            ptr = self.head
+            while temp:
+                if ptr.data == temp.data:
+                    temp.next = temp.next.next
+
+                ptr = temp
+                temp = temp.next
+
             
 
 
@@ -156,5 +174,8 @@ dll.delete_node(dll.head.next)
 dll.print_list()
 
 print('Reversed List')
+dll.reverse_list()
+dll.print_list()
+
 dll.reverse_list()
 dll.print_list()

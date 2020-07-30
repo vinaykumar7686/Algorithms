@@ -8,7 +8,7 @@ class Tree:
     def __init__(self):
         self.head = None
     
-    def in_order_Traverse(self):
+    def pre_order_Traverse(self):
         if self.head == None:
             return
         
@@ -17,15 +17,13 @@ class Tree:
         stack = [self.head]
 
         while stack:
-            temp = stack[-1]
+            temp = stack[0]
             print(temp.data)
-
-            if temp.left != None:
-                stack.insert(0 , (temp.left))
+            stack = stack[1:]
             if temp.right != None:
-                stack.insert( 0 ,(temp.right))
-
-            stack.pop()
+                stack.insert(0,(temp.right))
+            if temp.left != None:
+                stack.insert(0,(temp.left))
 
 if __name__ == "__main__":
     tree = Tree()
@@ -47,4 +45,4 @@ if __name__ == "__main__":
     n5.right = n7
     n7.left = n8
 
-    tree.in_order_Traverse()
+    tree.pre_order_Traverse()

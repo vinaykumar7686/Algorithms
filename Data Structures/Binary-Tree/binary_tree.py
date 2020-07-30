@@ -16,6 +16,7 @@ class Tree:
 
         stack = [self.head]
 
+        print('Pre-Order')
         while stack:
             temp = stack[0]
             print(temp.data)
@@ -24,6 +25,20 @@ class Tree:
                 stack.insert(0,(temp.right))
             if temp.left != None:
                 stack.insert(0,(temp.left))
+
+    def in_order_Traverse(self):
+        if self.head == None:
+            return
+                
+        def trav(node):
+            if node == None:
+                return
+            trav(node.left)
+            print(node.data)
+            trav(node.right)
+        print('In-order')
+        trav(self.head)
+
 
 if __name__ == "__main__":
     tree = Tree()
@@ -46,3 +61,4 @@ if __name__ == "__main__":
     n7.left = n8
 
     tree.pre_order_Traverse()
+    tree.in_order_Traverse()

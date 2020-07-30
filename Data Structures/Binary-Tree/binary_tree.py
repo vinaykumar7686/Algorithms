@@ -52,6 +52,29 @@ class Tree:
             print(node.data)
         print('Post-order')
         trav(self.head)
+    
+    def insert(self, data):
+        ptr = Node(data)
+        if self.head == None:
+            self.head = ptr
+            return
+        
+        stack = [self.head]
+        while stack:
+            temp = stack[0]
+            stack = stack[1:]
+            
+            if not temp.right:
+                temp.right = ptr
+                break
+            else:
+                stack.insert(0, temp.right)
+            if not temp.left:
+                temp.left = ptr
+                break
+            else:
+                stack.insert(0, temp.left)
+
 
 
 if __name__ == "__main__":
@@ -77,3 +100,5 @@ if __name__ == "__main__":
     tree.pre_order_Traverse()
     tree.in_order_Traverse()
     tree.post_order_Traverse()
+    tree.insert(9)
+    tree.in_order_Traverse()

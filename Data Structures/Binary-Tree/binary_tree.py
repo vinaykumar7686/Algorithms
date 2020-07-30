@@ -38,6 +38,20 @@ class Tree:
             trav(node.right)
         print('In-order')
         trav(self.head)
+    
+    def post_order_Traverse(self):
+        if self.head == None:
+            return
+                
+        def trav(node):
+            if node == None:
+                return
+            
+            trav(node.left)
+            trav(node.right)
+            print(node.data)
+        print('Post-order')
+        trav(self.head)
 
 
 if __name__ == "__main__":
@@ -62,3 +76,4 @@ if __name__ == "__main__":
 
     tree.pre_order_Traverse()
     tree.in_order_Traverse()
+    tree.post_order_Traverse()

@@ -74,6 +74,55 @@ class Tree:
                 break
             else:
                 stack.insert(0, temp.left)
+    
+    def delete_val(self, val):
+        '''
+        method to delete a given value from binary tree.
+        Metodology: Copy the value of right most nodes` value in right subtree to the vnode whose value is to be deleted and delete the rightmost node
+        '''
+        if self.head == None:
+            return
+        if self.head.left == None and self.head.right==None:
+            if self.head.data==val:
+                self.head = None
+                return
+            return
+        def delete_deepest(node, delnode):
+            stack = [node]
+            while stack:
+                temp = stack[0]
+                stack = stack [1:]
+
+                if temp.right:
+                    if temp.right == delnode:
+                        temp.right = None
+                    else:
+                        stack.insert(0, temp.right)
+                if temp.left:
+                    if temp.left == delnode:
+                        temp.left = None
+                    else:
+                        stack.insert(0, temp.left)
+        
+        stack = [self.head]
+        temp = None
+        key_node = None
+        while stack:
+            temp = stack.pop(0)
+            if temp.data == val:
+                key_node = temp
+            if temp.right!=None:
+                stack.insert(0, temp.right)
+            if temp.left!=None:
+                stack.insert(0, temp.left)
+        
+        if key_node:
+            x = temp.data
+            delete_deepest(self.head, temp)
+            key_node.data = x
+            
+
+
 
 
 
@@ -101,4 +150,7 @@ if __name__ == "__main__":
     tree.in_order_Traverse()
     tree.post_order_Traverse()
     tree.insert(9)
+    tree.in_order_Traverse()
+
+    tree.delete_val(9)
     tree.in_order_Traverse()

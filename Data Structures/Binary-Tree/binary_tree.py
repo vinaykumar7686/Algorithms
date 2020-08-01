@@ -8,6 +8,23 @@ class Tree:
     def __init__(self):
         self.head = None
     
+    def bft(self):
+        if self.head == None:
+            return
+        print("Bredth First Traversal")
+        ptr = self.head
+        stack = [self.head]
+        while stack:
+            ptr = stack[0]
+            stack = stack[1:]
+            print(ptr.data)
+
+            if ptr.left:
+                stack.append(ptr.left)
+            if ptr.right:
+                stack.append(ptr.right)
+                
+
     def pre_order_Traverse(self):
         if self.head == None:
             return
@@ -151,6 +168,4 @@ if __name__ == "__main__":
     tree.post_order_Traverse()
     tree.insert(9)
     tree.in_order_Traverse()
-
-    tree.delete_val(9)
-    tree.in_order_Traverse()
+    tree.bft()

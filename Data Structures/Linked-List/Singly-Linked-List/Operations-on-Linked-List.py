@@ -482,6 +482,32 @@ class LinkedList:
                 l1= l1.next
         return intersection'''
 
+    def delete_by_data(self, val):
+        if not self.head:
+            return
+        temp = self.head
+        prev = None
+
+        while temp:
+            if temp.data == val:
+                prev.next = temp.next
+                print(f'Deleted: {val}')
+            prev = temp
+            temp = temp.next
+
+    def subtract_lists(self, subtrahend):
+        '''
+        Function to delete all the elements of list1 that are present in list 2
+        '''
+        if not subtrahend.head:
+            return
+        temp = subtrahend.head
+
+        while temp:
+            self.delete_by_data(temp.data)
+            temp = temp.next
+
+
 if __name__ == "__main__":
     
     ll=LinkedList()

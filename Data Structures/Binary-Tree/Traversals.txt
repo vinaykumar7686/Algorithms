@@ -5,3 +5,32 @@ Depth First Traversals
 Inorder Traversal (Left-Root-Right)
 Preorder Traversal (Root-Left-Right)
 Postorder Traversal (Left-Right-Root)
+
+_________________________________________________________________________________
+# PreOrder Traversal
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def preorderTraversal(self, root: TreeNode) -> List[int]:
+        if not root:
+            return []
+        
+        ans = []
+        stack = [root]
+        
+        while stack:
+            temp = stack.pop(0)
+            
+            ans.append(temp.val)
+            
+            if temp.right:
+                stack = [temp.right]+stack
+            if temp.left:
+                stack = [temp.left]+stack
+                
+        return ans
